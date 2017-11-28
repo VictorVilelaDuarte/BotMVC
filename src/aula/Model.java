@@ -1,18 +1,26 @@
 package aula;
 
+//API KEY = AIzaSyD4XIjCdSGeTSvmTar_VpOwsVBo8ZhmcKc
+//https://developers.google.com/places/web-service/search 
+//Gson
+//kaggle.com
+
+
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Observer;
+
 import com.pengrad.telegrambot.model.Update;
 
+
+
 public class Model implements Subject{
-	private List<Observer> observers = new LinkedList<Observer>();
-	public List<Hospital> hospitais = new LinkedList<Hospital>();
+	public List<Observer> observers = new LinkedList<Observer>();
+	static List<Hospital> hospitais = new LinkedList<Hospital>();
+
 	
 	private static Model uniqueInstance;
 	
 	
-	private Model(){}
 	
 	public static Model getInstance(){
 		if(uniqueInstance == null){
@@ -23,16 +31,20 @@ public class Model implements Subject{
 	
 	public void registerObserver(Observer observer){
 		observers.add(observer);
+		//this.hospitais.add((Hospital) hospitais);
 	}
 	
-	public void notifyObservers(long chatId){
+	
+	public void notifyObservers(long chatId, List<Hospital> hospitais){
 		for(Observer observer:observers){
-			observer.update(null, chatId);
+			observer.update(chatId, hospitais);
 		}
 	}
-	
-	public void addHospital(Hospital Hospital){
-		this.hospitais.add(Hospital);
+
+	public void getHospitais(Update update){
+		long chatId = update.message().chat().id();	
+		this.notifyObservers(chatId, hospitais);
 	}
+	
 	
 }

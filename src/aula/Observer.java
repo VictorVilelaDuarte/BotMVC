@@ -1,6 +1,8 @@
 package aula;
-public interface Observer {
 
-	public void update(long chatId);
-	
+import java.util.List;
+
+public interface Observer {
+	public void update(long chatId, List<Hospital> hospitais);
+
 }

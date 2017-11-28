@@ -1,13 +1,15 @@
 package aula;
 
-
 public class Hospital {
-
+	
 	private String nome;
 	private String endereco;
 	private LatLng localizacao;
 		
 	public Hospital(String nome, String endereco, LatLng localizacao) {
+	
+	
+		
 		this.nome = nome;
 		this.endereco = endereco;
 		this.localizacao = localizacao;
@@ -30,8 +32,5 @@ public class Hospital {
 	public void setLocalizacao(LatLng localizacao) {
 		this.localizacao = localizacao;
 	}
-	
-	
-	
 	
 }
